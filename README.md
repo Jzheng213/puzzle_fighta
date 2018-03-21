@@ -2,12 +2,12 @@ MVP
 
 Create a one player Tetris game.
 
-drop by interval
-rotation
-delete row
-show next queue
-Piece hold
-High score Table
+drop by interval,
+rotation,
+delete row,
+show next queue,
+Piece hold,
+High score Table,
 shadow piece
 
 Create

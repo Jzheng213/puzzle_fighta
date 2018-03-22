@@ -1,5 +1,5 @@
 import { stick, collided } from '../util/collision';
-import { resetDropCounter } from '../util/render';
+import { resetDropCounter, resetInterval } from '../util/render';
 import playerReset from './playerReset';
 import lineClear from '../board/board_clear';
 
@@ -9,6 +9,7 @@ const playerDrop = (grid, player) => {
     player.pos.y--;
     stick(grid, player);
     lineClear();
+    resetInterval();
     playerReset();
   }
   resetDropCounter();

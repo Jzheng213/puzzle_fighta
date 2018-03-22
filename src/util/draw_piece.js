@@ -1,4 +1,5 @@
 import { context } from '../canvas';
+import drawSquare from './draw_square';
 
 const drawPiece = (shape, delta) => {
   shape.forEach((row, y) => {
@@ -6,29 +7,28 @@ const drawPiece = (shape, delta) => {
       if (value !== 0) {
         switch (value) {
         case 1:
-          context.fillStyle = 'purple';
+          drawSquare(x, y, delta, '#ab3e8f');
           break;
         case 2:
-          context.fillStyle = 'yellow';
+          drawSquare(x, y, delta, '#f9c333');
           break;
         case 3:
-          context.fillStyle = 'red';
+          drawSquare(x, y, delta, '#de5e2c');
           break;
         case 4:
-          context.fillStyle = 'green';
+          drawSquare(x, y, delta, '#1b3ece');
           break;
         case 5:
-          context.fillStyle = 'orange';
+          drawSquare(x, y, delta, '#349adc');
           break;
         case 6:
-          context.fillStyle = 'blue';
+          drawSquare(x, y, delta, '#d33e35');
           break;
         case 7:
-          context.fillStyle = '#ADD8E6';
+          drawSquare(x, y, delta, '#63b10e');
           break;
         default:
         }
-        context.fillRect(x + delta.x, y + delta.y, 1, 1);
       }
     });
   });

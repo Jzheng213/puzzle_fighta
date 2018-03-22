@@ -4,7 +4,6 @@ import { render } from './util/render';
 
 
 const game = () => {
-  context.scale(20, 20);
 
   board();
   render();

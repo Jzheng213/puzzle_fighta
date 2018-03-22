@@ -14,6 +14,19 @@ export const resetDropCounter = () => {
   dropCounter = 0;
 };
 
+export const resetInterval = () => {
+  dropInterval = 1000;
+};
+
+export const autoDrop = () => {
+  dropInterval = 0;
+};
+
+export const getDropInterval = () => {
+
+  return dropInterval;
+};
+
 export const render = (time = 0) => {
   const deltaTime = time - prevTime;
   prevTime = time;

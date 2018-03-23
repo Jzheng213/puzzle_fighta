@@ -1,5 +1,5 @@
 import draw from './draw';
-
+import { dropSound } from '../audios/audios';
 import playerDrop from '../player/playerDrop';
 
 export class Render{
@@ -27,6 +27,7 @@ export class Render{
   }
 
   autoDrop(){
+    dropSound();
     this.dropInterval = 0;
   }
 

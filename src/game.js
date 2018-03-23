@@ -14,9 +14,10 @@ class Game {
 
   }
 
-  startGame(){
+  startGame(backgroundMusic){
     this.render1.start();
     this.render2.start();
+    backgroundMusic.play();
   }
 
   getPlayer(num){

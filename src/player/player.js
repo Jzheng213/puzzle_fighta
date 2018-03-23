@@ -2,7 +2,7 @@ import {getRandomPiece, resetPiece } from '../pieces/pieces';
 import { collided, stick } from '../util/collision';
 import rotate from '../pieces/rotate';
 import sendTiles from '../board/send_tiles';
-
+import { moveSound} from '../audios/audios';
 class Player{
   constructor(canvas, context, grid){
     this.pos = {y:0, x:5};
@@ -25,6 +25,7 @@ class Player{
     if(collided(this.grid, this)){
       this.pos.x -= dir;
     }
+    moveSound.play();
   }
 
   allowHold(){

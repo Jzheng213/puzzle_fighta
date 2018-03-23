@@ -49,8 +49,8 @@ const drawSquare = (x, y, delta, color, context) => {
   context.strokeRect(
     ((x + delta.x) * scale) + 1,
     ((y + delta.y) * scale) + 1,
-    (scale - (1 * 2) + 1) ,
-    (scale - (1 * 2) + 1)
+    (scale - (1 * 2)) ,
+    (scale - (1 * 2))
   );
   make_3d(x, y, delta, context);
 };

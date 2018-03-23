@@ -25,7 +25,6 @@ class Player{
     if(collided(this.grid, this)){
       this.pos.x -= dir;
     }
-    moveSound.play();
   }
 
   allowHold(){

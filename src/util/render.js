@@ -27,8 +27,8 @@ export class Render{
   }
 
   autoDrop(){
-    dropSound();
     this.dropInterval = 0;
+    dropSound.play();
   }
 
   start(time = 0){

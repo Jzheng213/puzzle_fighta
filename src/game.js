@@ -1,14 +1,27 @@
-import { canvas, context } from './canvas';
 import board from './board/board';
-import { render } from './util/render';
+import { Render } from './util/render';
+import Player from './player/player';
+import newGrid from './board/board_items';
 
+class Game {
+  constructor(){
+    this.board = board();
+    this.player1 = new Player();
+    this.grid = newGrid();
+    this.render = new Render(this.grid, this.player1);
+  }
 
-const game = () => {
+  startGame(){
+    this.render.start();
+  }
 
-  board();
-  render();
+  getPlayerOne(){
+    return this.player1;
+  }
+  getPlayerGrid(){
+    return this.grid;
+  }
 
-  return null;
-};
+}
 
-export default game;
+export default Game;

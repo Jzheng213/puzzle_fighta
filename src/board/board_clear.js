@@ -1,6 +1,4 @@
-import { grid } from '../util/render';
-
-const lineClear = () => {
+const lineClear = (grid) => {
   outer: for (let y = grid.length - 1; y > 0; --y){
     for (let x = 0; x < grid[y].length; ++x){
       if(grid[y][x] === 0){

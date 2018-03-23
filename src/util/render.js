@@ -1,5 +1,4 @@
 import draw from './draw';
-import player from '../player/player';
 import newGrid from '../board/board_items';
 import playerDrop from '../player/playerDrop';
 
@@ -27,14 +26,22 @@ export const getDropInterval = () => {
   return dropInterval;
 };
 
-export const render = (time = 0) => {
-  const deltaTime = time - prevTime;
-  prevTime = time;
-  dropCounter += deltaTime;
-  if (dropCounter > dropInterval){
-    playerDrop(grid, player);
+export class Render{
+  constructor(grid, player){
+    this.grid = grid;
+    this.player = player;
+    this.start = this.start.bind(this);
   }
 
-  draw();
-  requestAnimationFrame(render);
-};
+  start(time = 0){
+    const deltaTime = time - prevTime;
+    prevTime = time;
+    dropCounter += deltaTime;
+    if (dropCounter > dropInterval){
+
+      playerDrop(this.grid, this.player);
+    }
+    draw(this.grid, this.player);
+    requestAnimationFrame(this.start);
+  }
+}

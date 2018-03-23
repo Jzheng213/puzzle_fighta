@@ -10,7 +10,6 @@ export const stick = (grid, player) => {
 
 export const collided = (grid, player) => {
   const [piece, pos] = [player.piece, player.pos];
-
   for (let y = 0; y < piece.length; y++) {
     for (let x = 0; x < piece.length; x++) {
       if(piece[y][x] !== 0 &&

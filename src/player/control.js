@@ -1,8 +1,6 @@
-import player from './player';
+import { player1, grid1 } from '../index';
 import playerDrop from './playerDrop';
-import { grid, autoDrop, getDropInterval } from '../util/render';
-import playerMove from './playerMove';
-import playerRotate from './playerRotate';
+import { autoDrop, getDropInterval } from '../util/render';
 
 const control = () => {
   document.addEventListener('keydown', event => {
@@ -10,16 +8,16 @@ const control = () => {
     if(getDropInterval() === 0) return null;
     switch (event.keyCode) {
     case 37:
-      playerMove(-1);
+      player1.move(-1);
       break;
     case 39:
-      playerMove(1);
+      player1.move(1);
       break;
     case 40:
-      playerDrop(grid, player);
+      playerDrop(grid1, player1);
       break;
     case 38:
-      playerRotate();
+      player1.rotate();
       break;
     case 32:
       autoDrop();

@@ -1,20 +1,15 @@
 import _ from 'lodash';
-import game from './game';
-
-//test
-import player from './player/player';
+import Game from './game';
 import control from './player/control';
-import { stick } from './util/collision';
-import { grid } from  './util/render';
 
-window.grid = grid;
-window.stick = stick;
-window.player = player;
+export let game = new Game();
+export let player1 = game.getPlayerOne();
+export let grid1 = game.getPlayerGrid();
 
 function component() {
   var element = document.createElement('div');
   control();
-  game();
+  game.startGame();
   return element;
 }
 

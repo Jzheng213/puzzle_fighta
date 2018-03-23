@@ -1,4 +1,4 @@
-import {getRandomPiece } from '../pieces/pieces';
+import {getRandomPiece, resetPiece } from '../pieces/pieces';
 import { collided, stick } from '../util/collision';
 import { grid1 } from '../index';
 import rotate from '../pieces/rotate';
@@ -11,7 +11,8 @@ class Player{
     for(let i = 0; i < this.queue.length; i++){
       this.queue[i] = getRandomPiece();
     }
-    console.log(this.queue);
+    this.heldPiece = [];
+    this.canHold = true;
   }
 
   move(dir){
@@ -20,6 +21,18 @@ class Player{
       this.pos.x -= dir;
     }
   }
+
+  allowHold(){
+    this.canHold = true;
+  }
+
+  resetHeldPiece(){
+    this.heldPiece = [];
+  }
+  getHeldPiece(){
+    return this.heldPiece[0] || [];
+  }
+
   getQueue(){
 
     let output = [];
@@ -43,8 +56,25 @@ class Player{
     this.queue.unshift(getRandomPiece());
   }
 
-  reset(){
-    this.getNextPiece();
+  holdPiece(){
+    if(!this.canHold) return;
+
+    if(this.heldPiece.length === 0){
+      this.heldPiece.unshift(resetPiece(this.piece));
+      this.reset();
+    }else{
+      this.heldPiece.unshift(resetPiece(this.piece));
+      this.reset(this.heldPiece.pop());
+    }
+    this.canHold = false;
+  }
+
+  reset(piece = null){
+    if (!piece){
+      this.getNextPiece();
+    }else{
+      this.piece = piece;
+    }
     this.pos.x = 5;
     this.pos.y = 0;
   }

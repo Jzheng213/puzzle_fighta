@@ -48,12 +48,17 @@ const SPiece = [
   [0, 0, 0],
 ];
 
+const pieces = [T, O, L, J, I, Z, S];
+
 export const getRandomPiece = () => {
-  const pieces = [T, O, L, J, I, Z, S];
   const sample = pieces[Math.floor(pieces.length * Math.random())];
   return generatePiece(sample);
 };
 
+export const resetPiece = (piece) => {
+  let value = piece[1][1]
+  return generatePiece(pieces[value - 1]);
+};
 
 export const generatePiece = (type) => {
   switch (type) {

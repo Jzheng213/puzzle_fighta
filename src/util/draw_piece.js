@@ -28,6 +28,7 @@ const drawPiece = (shape, delta, offset, context) => {
           break;
         case 8:
           drawSquare(x + offset.x, y + offset.y, delta, '#606060', context);
+          break;
         default:
         }
       }

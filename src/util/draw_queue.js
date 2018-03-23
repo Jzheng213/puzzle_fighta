@@ -1,7 +1,7 @@
 const drawQueue = (startX, startY, context) => {
-  context.fillStyle = 'grey';
+  context.fillStyle = '#2f2f2f';
   context.lineWidth = 3;
-  context.strokeStyle = 'black';
+  context.strokeStyle = '#222222';
   context.fillRect(startX + 250, startY, 93, 65);
   context.strokeRect(startX + 250, startY, 93, 65);
 

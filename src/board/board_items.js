@@ -1,5 +1,5 @@
 const newGrid = () => {
-  return boardGrid(12, 20);
+  return boardGrid(12, 21);
 };
 
 const boardGrid = (width, height) => {

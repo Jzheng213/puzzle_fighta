@@ -1,20 +1,22 @@
 import { stick, collided } from '../util/collision';
-import { resetDropCounter, resetInterval } from '../util/render';
 import lineClear from '../board/board_clear';
 
-const playerDrop = (grid, player) => {
+const playerDrop = (grid, player, render, opponent = null) => {
+  let linesCleared = 0;
   player.pos.y++;
   //piece sticks
   if(collided(grid, player)){
     player.pos.y--;
     stick(grid, player);
-    lineClear(grid);
-    resetInterval();
+    linesCleared = lineClear(grid);
+    player.linesCleared += linesCleared;
+    render.resetInterval();
+    player.resolveAttackLines();
     player.reset();
     player.allowHold();
+    if(opponent) opponent.attackedLines += linesCleared;
   }
-
-  resetDropCounter();
+  render.resetDropCounter();
   //losing condition
   if(collided(grid, player)){
     player.allowHold();

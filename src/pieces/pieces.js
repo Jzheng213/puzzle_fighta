@@ -56,7 +56,7 @@ export const getRandomPiece = () => {
 };
 
 export const resetPiece = (piece) => {
-  let value = piece[1][1]
+  let value = piece[1][1];
   return generatePiece(pieces[value - 1]);
 };
 

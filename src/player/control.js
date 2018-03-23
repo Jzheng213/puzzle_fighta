@@ -1,12 +1,11 @@
-import { player1, grid1 } from '../index';
+import { player1, render1, player2} from '../index';
 import playerDrop from './playerDrop';
-import { autoDrop, getDropInterval } from '../util/render';
 
 const control = () => {
   document.addEventListener('keydown', event => {
     if([16, 32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) event.preventDefault();
 
-    if(getDropInterval() === 0) return null;
+    if(render1.dropInterval === 0) return null;
     switch (event.keyCode) {
     case 16:
       player1.holdPiece();
@@ -18,13 +17,13 @@ const control = () => {
       player1.move(1);
       break;
     case 40:
-      playerDrop(grid1, player1);
+      playerDrop(player1.grid, player1, render1, player2);
       break;
     case 38:
       player1.rotate();
       break;
     case 32:
-      autoDrop();
+      render1.autoDrop();
       break;
     default:
     }

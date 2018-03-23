@@ -1,6 +1,4 @@
-import {context} from '../canvas';
-
-const drawHold = (startX, startY) => {
+const drawHold = (startX, startY, context) => {
   context.fillStyle = 'grey';
   context.lineWidth = 3;
   context.strokeStyle = 'black';

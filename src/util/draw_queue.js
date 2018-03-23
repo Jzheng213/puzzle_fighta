@@ -1,6 +1,4 @@
-import {context} from '../canvas';
-
-const drawQueue = (startX, startY) => {
+const drawQueue = (startX, startY, context) => {
   context.fillStyle = 'grey';
   context.lineWidth = 3;
   context.strokeStyle = 'black';

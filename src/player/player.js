@@ -1,10 +1,10 @@
 import {getRandomPiece, resetPiece } from '../pieces/pieces';
 import { collided, stick } from '../util/collision';
-import { grid1 } from '../index';
 import rotate from '../pieces/rotate';
+import sendTiles from '../board/send_tiles';
 
 class Player{
-  constructor(){
+  constructor(canvas, context, grid){
     this.pos = {y:0, x:5};
     this.piece = getRandomPiece();
     this.queue = new Array(4);
@@ -13,11 +13,16 @@ class Player{
     }
     this.heldPiece = [];
     this.canHold = true;
+    this.canvas = canvas;
+    this.context = context;
+    this.grid = grid;
+    this.linesCleared = 0;
+    this.attackedLines = 0;
   }
 
   move(dir){
     this.pos.x += dir;
-    if(collided(grid1, this)){
+    if(collided(this.grid, this)){
       this.pos.x -= dir;
     }
   }
@@ -29,12 +34,17 @@ class Player{
   resetHeldPiece(){
     this.heldPiece = [];
   }
+
   getHeldPiece(){
     return this.heldPiece[0] || [];
   }
 
-  getQueue(){
+  resolveAttackLines(){
+    sendTiles(this.grid, this.attackedLines);
+    this.attackedLines = 0;
+  }
 
+  getQueue(){
     let output = [];
     let valueHolder = {pos:{x:0,y:0},piece:null};
     this.queue.forEach((el) => {
@@ -84,7 +94,7 @@ class Player{
     let origPosX = this.pos.x;
     let origPosY = this.pos.y;
     this.piece = rotate(this.piece);
-    while(collided(grid1, this)){
+    while(collided(this.grid, this)){
 
       if(this.pos.y === origPosY && offset === 3){
         this.pos.y -= Math.floor(this.piece.length / 2);

@@ -1,8 +1,6 @@
 import { scale } from './settings';
-import { context } from '../canvas';
 
-
-const drawBorder = (x, y, delta, length) => {
+const drawBorder = (x, y, delta, length, context) => {
   context.strokeRect(
     ((x + delta.x) * scale) + length,
     ((y + delta.y) * scale) + length,
@@ -11,7 +9,7 @@ const drawBorder = (x, y, delta, length) => {
   );
 };
 
-const fillBox = (x, y, delta, length) => {
+const fillBox = (x, y, delta, length, context) => {
   context.fillRect(
     ((x + delta.x) * scale) + length,
     ((y + delta.y) * scale) + length,
@@ -20,7 +18,7 @@ const fillBox = (x, y, delta, length) => {
   );
 };
 
-const make_3d = (x, y, delta) => {
+const make_3d = (x, y, delta, context) => {
   context.fillStyle = 'rgba(255,255,255,0.1)';
   context.fillRect((x + delta.x) * scale + 5, (y + delta.y) * scale + 2, 12, 2);
   context.fillRect((x + delta.x) * scale + 2, (y + delta.y) * scale + 5, 2, 12);
@@ -32,19 +30,19 @@ const make_3d = (x, y, delta) => {
   context.fillRect((x + delta.x) * scale + 4, (y + delta.y) * scale + 4, 1, 1);
 };
 
-const drawSquare = (x, y, delta, color) => {
+const drawSquare = (x, y, delta, color, context) => {
   context.fillStyle = color;
   context.fillRect((x + delta.x) * scale, (y + delta.y) * scale, scale ,scale);
 
   context.fillStyle = color;
-  fillBox(x, y, delta, 7);
+  fillBox(x, y, delta, 7, context);
 
   context.strokeStyle = 'rgba(255,255,255,0.2)';
-  drawBorder(x, y, delta, 5);
+  drawBorder(x, y, delta, 5, context);
 
   //second outer
   context.strokeStyle = 'rgba(0,0,0,0.5)';
-  drawBorder(x, y, delta, 3);
+  drawBorder(x, y, delta, 3, context);
 
   // outer
   context.strokeStyle = 'rgba(0,0,0,0.75)';
@@ -54,7 +52,7 @@ const drawSquare = (x, y, delta, color) => {
     (scale - (1 * 2) + 1) ,
     (scale - (1 * 2) + 1)
   );
-  make_3d(x, y, delta);
+  make_3d(x, y, delta, context);
 };
 
 export default drawSquare;

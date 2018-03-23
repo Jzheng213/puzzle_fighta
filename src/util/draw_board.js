@@ -1,6 +1,4 @@
-import { canvas, context } from '../canvas';
-
-const board = (startX, startY) => {
+const drawBoard = (startX, startY, canvas, context) => {
   context.fillStyle = '#444444';
   context.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -13,4 +11,4 @@ const board = (startX, startY) => {
   return null;
 };
 
-export default board;
+export default drawBoard;

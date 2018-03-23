@@ -3,8 +3,10 @@ import Game from './game';
 import control from './player/control';
 
 export let game = new Game();
-export let player1 = game.getPlayerOne();
-export let grid1 = game.getPlayerGrid();
+export let player1 = game.getPlayer(1);
+export let player2 = game.getPlayer(2);
+export let render1 = game.getRender(1);
+export let render2 = game.getRender(2);
 
 function component() {
   var element = document.createElement('div');

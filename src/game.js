@@ -31,13 +31,14 @@ class Game {
     backgroundMusic.play();
   }
 
-  resetGame(){
+  resetGame(backgroundMusic){
     this.pauseGame();
     this.player1.grid = newGrid();
     this.player2.grid = newGrid();
     this.player1.clear();
     this.player2.clear();
     this.showBoard();
+    backgroundMusic.stop();
   }
 
   pauseGame(){

@@ -32,6 +32,8 @@ export class Render{
 
   autoDrop(){
     this.dropInterval = 0;
+    let shadow = this.player.getShadow()
+    this.player.pos = shadow.pos;
     // dropSound.play();
   }
 

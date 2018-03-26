@@ -30,7 +30,22 @@ const make_3d = (x, y, delta, context) => {
   context.fillRect((x + delta.x) * scale + 4, (y + delta.y) * scale + 4, 1, 1);
 };
 
-const drawSquare = (x, y, delta, color, context) => {
+export const drawShadow = (x, y, delta, color, context) => {
+  context.fillStyle = '2f2f2f';
+  context.fillRect((x + delta.x) * scale, (y + delta.y) * scale, scale ,scale);
+  context.strokeWidth = 2;
+  context.strokeStyle = '#666666';
+
+  context.strokeRect(
+    ((x + delta.x) * scale) + 1,
+    ((y + delta.y) * scale) + 1,
+    (scale - (1 * 2) -1) ,
+    (scale - (1 * 2) -1)
+  );
+};
+
+
+export const drawSquare = (x, y, delta, color, context) => {
   context.fillStyle = color;
   context.fillRect((x + delta.x) * scale, (y + delta.y) * scale, scale ,scale);
 
@@ -49,10 +64,8 @@ const drawSquare = (x, y, delta, color, context) => {
   context.strokeRect(
     ((x + delta.x) * scale) + 1,
     ((y + delta.y) * scale) + 1,
-    (scale - (1 * 2)) ,
-    (scale - (1 * 2))
+    (scale - (1 * 2)) + 1 ,
+    (scale - (1 * 2)) + 1
   );
   make_3d(x, y, delta, context);
 };
-
-export default drawSquare;

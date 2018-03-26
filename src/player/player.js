@@ -60,6 +60,24 @@ class Player{
     }
   }
 
+  getShadow(){
+
+    if (this.piece.length === 0) return {piece:[],pos:{x:0,y:0}};
+    let shadow = {
+      pos: Object.assign({},this.pos),
+      piece: this.piece.map(
+        row =>( row.map(el => el ? 9 : 0))
+      )
+    };
+
+    while(!collided(this.grid, shadow)){
+      shadow.pos.y++;
+    }
+
+    shadow.pos.y--;
+    return shadow;
+  }
+
   getQueue(){
     let output = [];
     let valueHolder = {pos:{x:0,y:0},piece:null};

@@ -1,4 +1,4 @@
-import drawSquare from './draw_square';
+import {drawSquare, drawShadow} from './draw_square';
 
 const drawPiece = (shape, delta, offset, context) => {
   shape.forEach((row, y) => {
@@ -28,6 +28,9 @@ const drawPiece = (shape, delta, offset, context) => {
           break;
         case 8:
           drawSquare(x + offset.x, y + offset.y, delta, '#606060', context);
+          break;
+        case 9:
+          drawShadow(x + offset.x, y + offset.y, delta, 'white', context);
           break;
         default:
         }

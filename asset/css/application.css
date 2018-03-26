@@ -1,3 +1,18 @@
 .main-body{
   background-color: #444444;
 }
+
+.game-button{
+  background-color: white;
+  height: 20px;
+  width: 40px;
+  margin: 5px;
+}
+
+#startGameBtn{
+
+}
+
+#pauseGameBtn{
+
+}

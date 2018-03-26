@@ -6,7 +6,7 @@ const drawPiece = (shape, delta, offset, context) => {
       if (value !== 0) {
         switch (value) {
         case 1:
-          drawSquare(x + offset.x, y + offset.y, delta, '#ab3e8f', context);
+          drawSquare(x + offset.x, y + offset.y, delta, 'purple', context);
           break;
         case 2:
           drawSquare(x + offset.x, y + offset.y, delta, '#f9c333', context);

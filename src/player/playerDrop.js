@@ -1,6 +1,6 @@
 import { stick, collided } from '../util/collision';
 import lineClear from '../board/board_clear';
-import { lineSound, gameOverSound } from '../audios/audios';
+import { lineSound, gameOverSound, dropSound } from '../audios/audios';
 
 const playerDrop = (grid, player, render, opponent = null) => {
   let linesCleared = 0;
@@ -10,7 +10,8 @@ const playerDrop = (grid, player, render, opponent = null) => {
     player.pos.y--;
     stick(grid, player);
     linesCleared = lineClear(grid);
-    lineSound.play();
+    linesCleared  ? lineSound.play() : dropSound.play();
+
     player.linesCleared += linesCleared;
     render.resetInterval();
     player.resolveAttackLines();
@@ -19,6 +20,7 @@ const playerDrop = (grid, player, render, opponent = null) => {
     if(opponent) opponent.attackedLines += linesCleared;
   }
   render.resetDropCounter();
+
   //losing condition
   if(collided(grid, player)){
     player.allowHold();

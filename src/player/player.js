@@ -2,22 +2,31 @@ import {getRandomPiece, resetPiece } from '../pieces/pieces';
 import { collided, stick } from '../util/collision';
 import rotate from '../pieces/rotate';
 import sendTiles from '../board/send_tiles';
-import { moveSound} from '../audios/audios';
+
 class Player{
   constructor(canvas, context, grid){
-    this.pos = {y:0, x:5};
-    this.piece = getRandomPiece();
-    this.queue = new Array(4);
-    for(let i = 0; i < this.queue.length; i++){
-      this.queue[i] = getRandomPiece();
-    }
-    this.heldPiece = [];
-    this.canHold = true;
     this.canvas = canvas;
     this.context = context;
     this.grid = grid;
+    this.piece = [];
+    this.heldPiece = [];
+    this.canHold = true;
     this.linesCleared = 0;
     this.attackedLines = 0;
+    this.pos = {y:0, x:5};
+    this.queue = new Array(4);
+    this.reset = this.reset.bind(this);
+    this.clear = this.clear.bind(this);
+  }
+
+  clear(){
+    this.piece = [];
+    this.heldPiece = [];
+    this.canHold = true;
+    this.linesCleared = 0;
+    this.attackedLines = 0;
+    this.pos = {y:0, x:5};
+    this.queue = new Array(4);
   }
 
   move(dir){
@@ -42,6 +51,13 @@ class Player{
   resolveAttackLines(){
     sendTiles(this.grid, this.attackedLines);
     this.attackedLines = 0;
+  }
+
+  newQueue(){
+    this.piece = getRandomPiece();
+    for(let i = 0; i < this.queue.length; i++){
+      this.queue[i] = getRandomPiece();
+    }
   }
 
   getQueue(){

@@ -6,12 +6,27 @@
   <body class='main-body'>
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
     <link rel="stylesheet" href="./asset/css/application.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <div id='tetris-container'>
-      <canvas id='tetris-player1' width='500' height='600'></canvas>
-      <div id='option-list'>
+      <div id='tetris-p1-container'>
+        <span class='player-name'>Player 1</span>
+        <span class='hold'>Hold</span>
+        <canvas id='tetris-player1' width='550' height='600'></canvas>
+        <span class='next'>Next</span>
       </div>
-      <canvas id='tetris-player2' width='500' height='600'></canvas>
+      <div id='option-list'></div>
+      <div id='tetris-p2-container'>
+        <span class='player-name'>Player 2</span>
+        <span class='hold'>Hold</span>
+        <canvas id='tetris-player2' width='550' height='600'></canvas>
+        <span class='next'>Next</span>
+      </div>
     </div>
+    <div id='option-modal' class="modal-content">
+      <h1>PAUSE</h1>
+      <div id='inner-modal-content'></div>
+    </div>
+
     <script src="dist/main.js"></script>
   </body>
 </html>

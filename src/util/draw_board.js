@@ -1,7 +1,7 @@
 import { scale } from './settings';
 
-export const drawBorder = (startX, startY, canvas, context) => {
-  context.fillStyle = '#444444';
+export const drawBorder = (startX, startY, canvas, context, color) => {
+  context.fillStyle = color;
   context.fillRect(startX - 4, startY - 2, 248, 14);
 
   context.lineWidth = 4
@@ -12,16 +12,17 @@ export const drawBorder = (startX, startY, canvas, context) => {
 
 export const drawBoard = (startX, startY, canvas, context) => {
 
-  context.fillStyle = '#444444';
+  context.fillStyle = 'rgba(0,0,0,0)';
+
   context.fillRect(0, 0, canvas.width, canvas.height);
   context.fillWidth = 1;
   const _drawSquare = drawSquare(context, scale, '#222222');
   for(let i = 0; i < 12; i++){
     for(let j = 0; j < 21; j++){
       if ((i + j) % 2 === 0){
-        _drawSquare(startX + (i * scale), startY + (j * scale), '#2f2f2f');
+        _drawSquare(startX + (i * scale), startY + (j * scale), 'rgba(47,47,47,1)');
       } else {
-        _drawSquare(startX + (i * scale), startY + (j * scale), '#2b2b2b');
+        _drawSquare(startX + (i * scale), startY + (j * scale), 'rgba(43,43,43,1)');
       }
     }
   }

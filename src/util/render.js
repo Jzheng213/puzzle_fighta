@@ -1,6 +1,7 @@
 import draw from './draw';
 import { dropSound } from '../audios/audios';
 import playerDrop from '../player/playerDrop';
+import { game } from '../index';
 
 export class Render{
   constructor(player, opponent = null){
@@ -32,7 +33,7 @@ export class Render{
 
   autoDrop(){
     this.dropInterval = 0;
-    let shadow = this.player.getShadow()
+    let shadow = this.player.getShadow();
     this.player.pos = shadow.pos;
     // dropSound.play();
   }
@@ -42,15 +43,18 @@ export class Render{
     if (!this.pause) this.start();
   }
 
+
+
   start(time = 0){
     const deltaTime = time - this.prevTime;
     this.prevTime = time;
     this.dropCounter += deltaTime;
     if (this.dropCounter > this.dropInterval){
-
       playerDrop(this.player.grid, this.player, this, this.opponent);
     }
+
     draw(this.player.grid, this.player, true);
+    if(this.player.lives === 0) game.isGameOver();
     if (!this.pause){
       requestAnimationFrame(this.start);
     }

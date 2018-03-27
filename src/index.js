@@ -9,13 +9,6 @@ export let player1 = game.getPlayer(1);
 export let player2 = game.getPlayer(2);
 export let render1 = game.getRender(1);
 export let render2 = game.getRender(2);
-window.pause = game.pauseGame;
-
-window.onclick = (event) => {
-  if(event.target == modal){
-    modal.style.display = 'none';
-  }
-};
 
 const component = () => {
   var element = document.createElement('div');
@@ -24,10 +17,13 @@ const component = () => {
   return element;
 };
 
+
+
 const btnStartGame = () => {
   let startGameBtn = document.createElement('btn');
   startGameBtn.setAttribute('class', 'game-button');
   startGameBtn.setAttribute('id', 'start-button');
+
   startGameBtn.innerHTML = 'Start';
   startGameBtn.addEventListener('click', () =>{
     game.startGame(themeSong);
@@ -56,28 +52,20 @@ const btnQuitGame = () => {
   });
   return quitGame;
 };
+
 const btnOptions = () => {
-
-
   let option = document.createElement('btn');
   option.setAttribute('class', 'game-button');
   option.setAttribute('id', 'option-button');
   option.innerHTML = 'Options';
   option.addEventListener('click', () =>{
-    modal.style.display = 'absolute';
+    let modal = document.getElementById('option-modal');
+    modal.style.display = 'flex';
   });
   return option;
 };
 
 
-
-const modal = () =>{
-  let modal = document.createElement('div');
-  modal.setAttribute('class', 'modal-content');
-  modal.setAttribute('id', 'option-modal');
-  modal.style.display = 'none';
-  return modal;
-};
 
 const btnResume = () => {
   let resume = document.createElement('btn');
@@ -85,19 +73,42 @@ const btnResume = () => {
   resume.setAttribute('id', 'resume-button');
   resume.innerHTML = 'Resume';
   resume.addEventListener('click', () =>{
+    let modal = document.getElementById('option-modal');
     modal.style.display = 'none';
   });
   return resume;
 };
 
-document.body.appendChild(component());
-document.body.appendChild(modal());
-const tetrisContainer = document.getElementById('option-list');
+const record = () => {
+  let record = document.createElement('div');
+  record.setAttribute('class', 'record');
+  record.setAttribute('id', 'record');
+  record.innerHTML = '0 - 0';
+  return record;
+};
 
+const playerLives = (player) => {
+  let lives = document.createElement('div');
+  lives.setAttribute('class', 'player-lives');
+  lives.setAttribute('id', `${player}-lives`);
+  lives.innerHTML = 'Lives 2';
+  return lives;
+};
+
+document.body.appendChild(component());
+
+
+const tetrisContainer = document.getElementById('option-list');
 tetrisContainer.appendChild(btnStartGame());
 tetrisContainer.appendChild(btnPauseGame());
 tetrisContainer.appendChild(btnOptions());
 tetrisContainer.appendChild(btnQuitGame());
+tetrisContainer.appendChild(record());
 
-const optionModal = document.getElementById('option-modal');
+const optionModal = document.getElementById('inner-modal-content');
 optionModal.appendChild(btnResume());
+
+const p1Container = document.getElementById('tetris-p1-container');
+const p2Container = document.getElementById('tetris-p2-container');
+p1Container.appendChild(playerLives('player1'));
+p2Container.appendChild(playerLives('player2'));

@@ -4,7 +4,9 @@ import rotate from '../pieces/rotate';
 import sendTiles from '../board/send_tiles';
 
 class Player{
-  constructor(canvas, context, grid){
+  constructor(canvas, context, grid, color){
+    this.color = color;
+    this.lives = 2;
     this.canvas = canvas;
     this.context = context;
     this.grid = grid;
@@ -61,7 +63,6 @@ class Player{
   }
 
   getShadow(){
-
     if (this.piece.length === 0) return {piece:[],pos:{x:0,y:0}};
     let shadow = {
       pos: Object.assign({},this.pos),

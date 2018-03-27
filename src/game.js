@@ -76,10 +76,10 @@ class Game {
 
   isGameOver(){
     if(this.player1.lives === 0){
-      this.record.player1++;
+      this.record.player2++;
       this.resetGame(themeSong);
     }else if (this.player2.lives === 0) {
-      this.record.player2++;
+      this.record.player1++;
       this.resetGame(themeSong);
     }
     this.updateRecord();

@@ -1,6 +1,6 @@
 import { stick, collided } from '../util/collision';
 import lineClear from '../board/board_clear';
-import { lineSound, gameOverSound, dropSound } from '../audios/audios';
+import { lineSound, gameOverSound, dropSound , lostLife} from '../audios/audios';
 import { game } from '../index';
 
 const playerDrop = (grid, player, render, opponent = null) => {
@@ -27,8 +27,8 @@ const playerDrop = (grid, player, render, opponent = null) => {
     player.allowHold();
     player.resetHeldPiece();
     grid.forEach(row => row.fill(0));
-    gameOverSound.play();
     player.lives--;
+    player.lives === 0 ? gameOverSound.play() : lostLife.play();
     game.updateShowLives();
   }
 };

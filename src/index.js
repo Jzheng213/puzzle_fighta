@@ -61,6 +61,7 @@ const btnOptions = () => {
   option.addEventListener('click', () =>{
     let modal = document.getElementById('option-modal');
     modal.style.display = 'flex';
+    game.pauseGame();
   });
   return option;
 };
@@ -75,6 +76,7 @@ const btnResume = () => {
   resume.addEventListener('click', () =>{
     let modal = document.getElementById('option-modal');
     modal.style.display = 'none';
+    game.pauseGame();
   });
   return resume;
 };
@@ -95,6 +97,20 @@ const playerLives = (player) => {
   return lives;
 };
 
+const letter = (letter) => {
+  let container = $('<div>');
+  let key = $('<div>');
+  key.addClass('key');
+  let span = $('<span>');
+  container.addClass('key-container');
+  $(container).append(key);
+  $(container).append(span);
+  span.html(Object.values(letter)[0]);
+  key.html(Object.keys(letter)[0]);
+
+  return container[0];
+};
+
 document.body.appendChild(component());
 
 
@@ -106,9 +122,55 @@ tetrisContainer.appendChild(btnQuitGame());
 tetrisContainer.appendChild(record());
 
 const optionModal = document.getElementById('inner-modal-content');
-optionModal.appendChild(btnResume());
-
 const p1Container = document.getElementById('tetris-p1-container');
 const p2Container = document.getElementById('tetris-p2-container');
 p1Container.appendChild(playerLives('player1'));
 p2Container.appendChild(playerLives('player2'));
+
+let themeVolControl = document.getElementById('theme-music-volume');
+themeVolControl.oninput = function(){
+  const themeMusic = document.getElementsByClassName('theme-song');
+  themeMusic[0].volume = this.value /100;
+};
+
+let themeMuteControl = document.getElementById('theme-music-mute');
+themeMuteControl.onclick = function(){
+  const themeMusic = document.getElementsByClassName('theme-song');
+  themeMusic[0].muted = !themeMusic[0].muted;
+  let color = $(this).css('background-color') === 'rgb(102, 102, 102)' ? '#329bf2' : 'rgb(102, 102, 102)';
+  this.style.background = color;
+};
+
+let soundVolControl = document.getElementById('sound-volume');
+soundVolControl.oninput = function(){
+  const sound = document.getElementsByClassName('tetris-sound');
+  for(let i =0; i< sound.length; i++){
+    sound[i].volume = this.value /100;
+  }
+};
+
+let soundMuteControl = document.getElementById('sound-mute');
+soundMuteControl.onclick = function(){
+  const sound = document.getElementsByClassName('tetris-sound');
+  for(let i =0; i< sound.length; i++){
+    sound[i].muted = !sound[i].muted;
+  }
+  let color = $(this).css('background-color') === 'rgb(102, 102, 102)' ? '#329bf2' : 'rgb(102, 102, 102)';
+  this.style.background = color;
+};
+
+
+let player1Control = [{'Q': 'Hold'},{'W': 'Instant Drop'}, {'T': 'Rotate'}, {'F': 'Left'}, {'H': 'Right'}, {'G': 'SoftDrop'}];
+let player2Control = [{'N': 'Hold'},{'M': 'Instant Drop'}, {'&#8593;': 'Rotate'}, {'&#8592': 'Left'}, {'&#8594;': 'Right'}, {'&#8595;': 'SoftDrop'}];
+
+
+let player1ControlContainer = document.getElementById('player1-control-container')
+player1Control.forEach((el) =>{
+  player1ControlContainer.appendChild((letter(el)));
+});
+
+let player2ControlContainer = document.getElementById('player2-control-container')
+player2Control.forEach((el) =>{
+  player2ControlContainer.appendChild((letter(el)));
+});
+document.getElementById('resume-button-container').appendChild(btnResume());

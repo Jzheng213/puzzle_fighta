@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
     <link rel="stylesheet" href="./asset/css/application.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
     <div id='tetris-container'>
       <div id='tetris-p1-container'>
         <span class='player-name'>Player 1</span>
@@ -24,7 +25,39 @@
     </div>
     <div id='option-modal' class="modal-content">
       <h1>PAUSE</h1>
-      <div id='inner-modal-content'></div>
+      <div id='inner-modal-content'>
+        <div class='sounds'>
+          <div class='sound-container'>
+            <span>VOLUME MUSIC</span>
+            <div>
+              <div class="slidecontainer">
+                <input type="range" min="0" max="100" value="50" class="slider" id="theme-music-volume">
+              </div>
+              <button type="button" class='music-control-button' id="theme-music-mute">
+                <div><i class="fas fa-music"></i></div>
+              </button>
+            </div>
+          </div>
+          <div class='sound-container'>
+            <span>VOLUME FX</span>
+            <div>
+              <div class="slidecontainer">
+                <input type="range" min="0" max="100" value="50" class="slider" id="sound-volume">
+              </div>
+              <button type="button" class='music-control-button' id="sound-mute">
+                <div><i class="fas fa-volume-up"></i></div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="player-control" id='player1-control-container'>
+          <span>Player1 Controls</span>
+        </div>
+        <div class="player-control" id='player2-control-container'>
+          <span>Player2 Controls</span>
+        </div>
+      </div>
+      <div id='resume-button-container'></div>
     </div>
 
     <script src="dist/main.js"></script>

@@ -119,9 +119,10 @@ tetrisContainer.appendChild(btnStartGame());
 tetrisContainer.appendChild(btnPauseGame());
 tetrisContainer.appendChild(btnOptions());
 tetrisContainer.appendChild(btnQuitGame());
-tetrisContainer.appendChild(record());
 
-const optionModal = document.getElementById('inner-modal-content');
+const scoreBoard = document.getElementById('score-board');
+scoreBoard.appendChild(record());
+
 const p1Container = document.getElementById('tetris-p1-container');
 const p2Container = document.getElementById('tetris-p2-container');
 p1Container.appendChild(playerLives('player1'));

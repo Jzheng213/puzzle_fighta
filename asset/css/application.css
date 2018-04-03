@@ -6,28 +6,40 @@ body{
 }
 
 .main-body{
+  box-sizing: border-box;
   background-image: url('../images/tetris_background.jpeg');
   background-repeat: no-repeat;
   display: flex;
   justify-content: space-evenly;
 }
 
+.middle-list{
+  box-sizing: border-box;
+  height: 100%;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 150px;
+}
+
 #option-list{
   z-index: 1;
   display: flex;
   flex-direction: column;
-  width: 105px;
-  height: 220px;
   align-items: center;
   justify-content: space-between;
-
+  height: 220px;
+  width: 100%;
 }
 
 #tetris-container{
+  box-sizing: border-box;
   margin-top: 100px;
   background-color: rgba(68,68,68,0.75);
-  width: 1200px;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
@@ -65,7 +77,6 @@ body{
 
 .game-button-3d{
   position: absolute;
-
 }
 
 #start-button{
@@ -85,12 +96,10 @@ body{
 }
 
 #tetris-p1-container{
-  margin-left: 20px;
   position: relative;
 }
 
 #tetris-p2-container{
-  margin-right: 20px;
   position: relative;
 }
 
@@ -167,6 +176,10 @@ body{
   align-self: flex-end;
 
 }
+#score-board{
+  margin-top: 50px;
+  font-size: 30px;
+}
 
 .sound-container{
   display: flex;
@@ -229,4 +242,18 @@ body{
   margin-top: 5px;
   margin-left: 50px;
   font-size: 18px;
+}
+
+.contact{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.contact div{
+  margin-bottom: 10px;
+}
+.contact a{
+  margin: 5px;
+  font-size: 20px;
+  color: white;
 }

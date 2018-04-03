@@ -68,7 +68,7 @@ body{
 .next{
   position: absolute;
   top: 110px;
-  right: 100px;
+  right: 70px;
 }
 .game-button:hover{
   width: 105px;

@@ -35,7 +35,7 @@ export class Render{
     this.dropInterval = 0;
     let shadow = this.player.getShadow();
     this.player.pos = shadow.pos;
-    // dropSound.play();
+    dropSound.play();
   }
 
   togglePause(){

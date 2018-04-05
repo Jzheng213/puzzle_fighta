@@ -1,7 +1,8 @@
 import { stick, collided } from '../util/collision';
 import lineClear from '../board/board_clear';
-import { lineSound, gameOverSound, dropSound , lostLife} from '../audios/audios';
+import { gameOverSound, lostLife, erase } from '../audios/audios';
 import { game } from '../index';
+import { calculateAttack } from '../board/send_tiles';
 
 const playerDrop = (grid, player, render, opponent = null) => {
   let linesCleared = 0;
@@ -10,15 +11,21 @@ const playerDrop = (grid, player, render, opponent = null) => {
   if(collided(grid, player)){
     player.pos.y--;
     stick(grid, player);
+
     linesCleared = lineClear(grid);
-    linesCleared  ? lineSound.play() : dropSound.play();
+    if (linesCleared) erase(linesCleared);
 
     player.linesCleared += linesCleared;
     render.resetInterval();
     player.resolveAttackLines();
     player.reset();
     player.allowHold();
-    if(opponent) opponent.attackedLines += linesCleared;
+
+    if(opponent) {
+      opponent.attackedLines += calculateAttack(linesCleared, player.combo, player.wasTetris());
+    }
+    player.incrementCombo(linesCleared);
+    player.prevLineCleared = linesCleared;
   }
   render.resetDropCounter();
 

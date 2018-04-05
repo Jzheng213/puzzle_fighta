@@ -1,8 +1,12 @@
+
 body{
+
   font-family: 'Luckiest Guy', cursive;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   letter-spacing: 2px;
   color: white;
+  display: flex;
+  justify-content: center;
 }
 
 .main-body{
@@ -10,7 +14,7 @@ body{
   background-image: url('../images/tetris_background.jpeg');
   background-repeat: no-repeat;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .middle-list{

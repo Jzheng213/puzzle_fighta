@@ -1,7 +1,7 @@
 import {getRandomPiece, resetPiece } from '../pieces/pieces';
 import { collided, stick } from '../util/collision';
 import rotate from '../pieces/rotate';
-import sendTiles from '../board/send_tiles';
+import { sendTiles } from '../board/send_tiles';
 
 class Player{
   constructor(canvas, context, grid, color){
@@ -10,10 +10,12 @@ class Player{
     this.canvas = canvas;
     this.context = context;
     this.grid = grid;
+    this.combo = 0;
     this.piece = [];
     this.heldPiece = [];
     this.canHold = true;
     this.linesCleared = 0;
+    this.prevLineCleared = 0;
     this.attackedLines = 0;
     this.pos = {y:0, x:5};
     this.queue = new Array(4);
@@ -62,6 +64,18 @@ class Player{
     }
   }
 
+  wasTetris(){
+    return this.prevLineCleared === 4;
+  }
+
+  incrementCombo(lines){
+    if(lines === 0){
+      this.combo = 0;
+    } else {
+      this.combo = Math.min(this.combo + 1, 20);
+    }
+  }
+
   getShadow(){
     if (this.piece.length === 0) return {piece:[],pos:{x:0,y:0}};
     let shadow = {
@@ -103,7 +117,6 @@ class Player{
 
   holdPiece(){
     if(!this.canHold) return;
-
     if(this.heldPiece.length === 0){
       this.heldPiece.unshift(resetPiece(this.piece));
       this.reset();

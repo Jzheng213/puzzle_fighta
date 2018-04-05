@@ -1,6 +1,6 @@
 import { stick, collided } from '../util/collision';
 import lineClear from '../board/board_clear';
-import { gameOverSound, lostLife, erase } from '../audios/audios';
+import { gameOverSound, lostLife, erasePlay, comboPlay } from '../audios/audios';
 import { game } from '../index';
 import { calculateAttack } from '../board/send_tiles';
 
@@ -13,17 +13,19 @@ const playerDrop = (grid, player, render, opponent = null) => {
     stick(grid, player);
 
     linesCleared = lineClear(grid);
-    if (linesCleared) erase(linesCleared);
+    player.combo === 0 ? erasePlay(linesCleared) : comboPlay(player.combo);
 
     player.linesCleared += linesCleared;
     render.resetInterval();
-    player.resolveAttackLines();
     player.reset();
     player.allowHold();
 
     if(opponent) {
-      opponent.attackedLines += calculateAttack(linesCleared, player.combo, player.wasTetris());
+      let attackLines = calculateAttack(linesCleared, player.combo, player.wasTetris());
+      player.attackedLines = Math.max(player.attackedLines - attackLines, 0);
+      opponent.attackedLines += Math.max(attackLines - player.attackedLines, 0);
     }
+    player.resolveAttackLines();
     player.incrementCombo(linesCleared);
     player.prevLineCleared = linesCleared;
   }
@@ -31,6 +33,7 @@ const playerDrop = (grid, player, render, opponent = null) => {
 
   //losing condition
   if(collided(grid, player)){
+    player.attackedLines = 0;
     player.allowHold();
     player.resetHeldPiece();
     grid.forEach(row => row.fill(0));

@@ -4,13 +4,13 @@ const B2BTETRIS = 6;
 const COMBO = {
   0:0,
   1:1,
-  2:2,
-  3:4,
-  4:6,
-  5:9,
-  6:12,
-  7:16,
-  MAX:20
+  2:1,
+  3:2,
+  4:2,
+  5:3,
+  6:3,
+  7:4,
+  MAX:4
 };
 
 export const calculateAttack = (currentAttack, comboCounter, wasTetris = false) => {
